@@ -1,5 +1,7 @@
 package com.jose.aviaras.resources;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jose.aviaras.domain.Categoria;
+import com.jose.aviaras.dtos.CategoriaDTO;
 import com.jose.aviaras.service.CategoriaService;
 
 @RestController
@@ -20,5 +23,10 @@ public class CategoriaResource {
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Categoria> findById(@PathVariable Integer id){
 		return  ResponseEntity.ok().body(categoriaService.findById(id));
+	}
+	
+	@GetMapping
+	public ResponseEntity<List<CategoriaDTO>> findAll(){
+		return ResponseEntity.ok().body(categoriaService.findAll());
 	}
 }
