@@ -28,4 +28,9 @@ public class CategoriaService {
 		List<CategoriaDTO> listCatDTO = list.stream().map(cat -> new CategoriaDTO(cat)).collect(Collectors.toList());
 		return listCatDTO;
 	}
+	
+	public Categoria create(Categoria cat) {
+		return categoriaRepository.save(cat);
+		
+	}
 }
