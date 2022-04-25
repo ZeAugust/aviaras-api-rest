@@ -31,6 +31,12 @@ public class CategoriaService {
 	
 	public Categoria create(Categoria cat) {
 		return categoriaRepository.save(cat);
-		
+	}
+	
+	public Categoria uptade(Integer id, CategoriaDTO catDTO) {
+		Categoria cat = findById(id);
+		cat.setNome(catDTO.getNome());
+		cat.setDescricao(catDTO.getDescricao());
+		return categoriaRepository.save(cat);
 	}
 }
