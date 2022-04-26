@@ -42,9 +42,9 @@ public class CategoriaResource {
 		return ResponseEntity.created(uri).body(cat);
 	}
 	
-	@PutMapping
+	@PutMapping(value = "/{id}")
 	public ResponseEntity<CategoriaDTO> update(@PathVariable Integer id, @RequestBody CategoriaDTO catDTO){
 		Categoria cat = categoriaService.uptade(id, catDTO);
-		return ReponseEntity.ok().body();
+		return ResponseEntity.ok().body(new CategoriaDTO(cat));
 	}
 }
