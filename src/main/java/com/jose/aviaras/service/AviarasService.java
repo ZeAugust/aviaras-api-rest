@@ -29,15 +29,17 @@ public class AviarasService {
 			Livro l2 = new Livro(null, "O Hobbit", "J.R.R Tolkien", "História de um Hobbit", cat2);
 			Livro l3 = new Livro(null, "Percy Jackson", "Rick Riordan", "Um menino que é filho do Netuno", cat3);
 			Livro l4 = new Livro(null, "It - A Coisa", "Stephen King", "Palahço do mal", cat4);
+			Livro l5 = new Livro(null, "Aprendendo Java", "Deitel", "Livro sobre Java", cat1);
 			
 			
-			cat1.getLivros().addAll(Arrays.asList(l1));
+			cat1.getLivros().addAll(Arrays.asList(l1, l5));
 			cat2.getLivros().addAll(Arrays.asList(l2));
 			cat3.getLivros().addAll(Arrays.asList(l3));
 			cat4.getLivros().addAll(Arrays.asList(l4));
 			
+			
 			this.categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4));
-			this.livroRepository.saveAll(Arrays.asList(l1,l2 ,l3 ,l4));		
+			this.livroRepository.saveAll(Arrays.asList(l1,l2 ,l3 ,l4, l5));		
 		
 	}
 }
