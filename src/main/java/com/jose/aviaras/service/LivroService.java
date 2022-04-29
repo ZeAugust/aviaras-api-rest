@@ -40,4 +40,9 @@ public class LivroService{
 		novoLivro.setNome_autor(livro.getNome_autor());
 		novoLivro.setTexto(livro.getTexto());
 	}
+
+	public Livro create(Livro livro) {
+		livro.setId(null);
+		return livroRepository.save(livro);
+	}
 }

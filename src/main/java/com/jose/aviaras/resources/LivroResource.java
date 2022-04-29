@@ -1,5 +1,6 @@
 package com.jose.aviaras.resources;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.jose.aviaras.domain.Livro;
 import com.jose.aviaras.dtos.LivroDTO;
@@ -46,5 +48,12 @@ public class LivroResource {
 	@PatchMapping(value = "/{id}")
 	public ResponseEntity<Livro> updatePatch(@PathVariable Integer id, @RequestBody Livro livro){
 		return ResponseEntity.ok().body(livroService.update(id, livro));
+	}
+	
+	@PutMapping
+	public ResponseEntity<Livro> create(@RequestBody Livro livro){
+		Livro novoLivro = livroService.create(livro);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{/id}").buildAndExpand(novoLivro.getId()).toUri();
+		return ResponseEntity.created(uri).body(novoLivro);
 	}
 }
