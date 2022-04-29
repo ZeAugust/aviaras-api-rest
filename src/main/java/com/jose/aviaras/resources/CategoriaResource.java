@@ -3,8 +3,11 @@ package com.jose.aviaras.resources;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +22,7 @@ import com.jose.aviaras.domain.Categoria;
 import com.jose.aviaras.dtos.CategoriaDTO;
 import com.jose.aviaras.service.CategoriaService;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping(value= "/categoria")
 public class CategoriaResource {
@@ -37,14 +41,14 @@ public class CategoriaResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Categoria> create(@RequestBody Categoria cat){
+	public ResponseEntity<Categoria> create(@Valid @RequestBody Categoria cat){
 		cat = categoriaService.create(cat);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cat.getId()).toUri();
 		return ResponseEntity.created(uri).body(cat);
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<CategoriaDTO> update(@PathVariable Integer id, @RequestBody CategoriaDTO catDTO){
+	public ResponseEntity<CategoriaDTO> update( @PathVariable Integer id, @Valid @RequestBody CategoriaDTO catDTO){
 		Categoria cat = categoriaService.uptade(id, catDTO);
 		return ResponseEntity.ok().body(new CategoriaDTO(cat));
 	}
