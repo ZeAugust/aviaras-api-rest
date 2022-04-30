@@ -6,8 +6,8 @@ public class StandardError {
 	private Integer status;
 	private String error;
 	
-	public void StandarError() {
-		
+	public StandardError() {
+		super();
 	}
 
 	public StandardError(Long timeStanp, Integer status, String error) {
